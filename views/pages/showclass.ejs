@@ -1,0 +1,59 @@
+<% include ../partials/header.ejs %>
+    <div class ="container-fluid p-5">
+        <% for(var i = 0; i< info.length; i++) {%>
+            <div class = "container border border-dark">
+                    <div class = "row">
+                        <div class ="col-sm">
+                                <h2 class ="text-center"><%- info[i].class_name %> (<%- info[i].credit %>)</h2>
+                                <div class ="container text-center">
+                                        <a href="editscore/<%- info[i].scoreinfo._id %>">Edit Score</a>
+                                </div>
+                        </div>
+                        <div class = "col-sm border-left border-dark">
+                            <h3 class = "text-center">Total Score : 
+                                    <% if(info[i].scoreinfo.total != null){%>
+                                         <%- info[i].scoreinfo.total %>
+                                    <% } else {%>
+                                        TBD
+                                    <% } %>
+                            </h3>
+                        </div>
+                        <div class = "col-sm border-left border-dark">
+                                <h3 class ="text-center">Grade :
+                                    <% if(info[i].scoreinfo.grade != ''){%>
+                                         <%- info[i].scoreinfo.grade %>
+                                    <% } else {%>
+                                        TBD
+                                    <% } %>
+                                </h3>
+                        </div>
+                    </div>
+                        
+                    <div class = "row border-top border-dark container p-2">
+                    <% for(var j = 0; j< info[i].scoreinfo.all_score.length; j++){%>
+                    
+                            <div class ="col-centered text-center ml-3">
+                                
+                                <%- info[i].scoreinfo.all_score[j].name %> (<%- info[i].scoreinfo.all_score[j].weight %>%)
+                                    <span class ="border-left border-dark px-2">
+                                            <% for(var k = 0; k < info[i].scoreinfo.all_score[j].score.length; k++){ %>
+                                                
+                                                <span class ="px-1"><%- info[i].scoreinfo.all_score[j].score[k] %></span>
+                                            <% } %> 
+                                    </span>
+                            </div>
+                    <% } %>
+                    <% if(info[i].scoreinfo.all_score.length == 0){%>
+                                <span class ="text-muted text-center">You do not have any score yet</span>
+                    <% } %>
+                        
+                    </div>
+            </div>
+        <% }%>
+        <div class ="text-center container p-2">
+            <a href="/">Back to Index Page</a>
+            
+        </div>
+    </div>
+     
+<% include ../partials/footer.ejs %>

@@ -1,0 +1,38 @@
+<% include ../partials/header.ejs %>
+    <div class="container p-5">
+        <h1>Study Plan For A Week</h1>
+        <h6>You are taking in total <%-plan[2]%> credit hours. The total recommended time to study for a week is <%-plan[1]%> hours</h6>
+        <div class ="row border-bottom border-dark pt-3 pb-1">
+            <div class ="col"><h3>I. Time for Reading</h3><span class = "text-muted">(Reading and Studying the materials)</span></div>
+        </div>
+        <div class ="row pt-2">
+                <% for(var i = 0; i < plan[0][0].length; i++){%>
+                        <div class ="col-centered text-center ml-3">
+                            <%-i+1%>. <%- plan[0][0][i][1]%> (<%-plan[0][0][i][0]%> hours)
+                        </div>
+                <% } %>    
+        </div>
+        <div class ="row border-bottom border-dark pt-3 pb-1">
+            <div class ="col"><h3>II. Time for Homework Assignments</h3><span class = "text-muted">(Solving and Completing the homework assignments asscociate with the reading materials)</span></div>
+        
+        </div>
+        <div class ="row pt-2">
+                <% for(var i = 0; i < plan[0][1].length; i++){%>
+                        <div class ="col-centered text-center ml-3">
+                            <%-i+1%>. <%- plan[0][1][i][1]%> (<%-plan[0][1][i][0]%> hours)
+                        </div>
+                <% } %>    
+        </div>
+        <div class ="row border-bottom border-dark pt-3 pb-1">
+            <div class ="col"><h3>III. Time for Review and Test Preparation</h3><span class = "text-muted">(Reviewing the studied materials and Preparing for the exam, quiz, etc.,)</span></div>
+        </div>
+        <div class ="row pt-2">
+                <% for(var i = 0; i < plan[0][2].length; i++){%>
+                        <div class ="col-centered text-center ml-3">
+                            <%-i+1%>. <%- plan[0][2][i][1]%> (<%-plan[0][2][i][0]%> hours)
+                        </div>
+                <% } %>    
+        </div>
+        <div class ="text-center p-2 container"><a href="/">Back to Index Page</a></div>
+    </div>
+<% include ../partials/footer.ejs %>

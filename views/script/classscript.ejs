@@ -1,0 +1,73 @@
+<script>
+    $(document).ready(function(){
+        $("#hide").hide()
+        var add_button = $(".add-button")
+        var input_field = $(".new_input")
+        var total = 0
+        $(".credit").each(function(){
+            if(this.value != NaN) total += Number(this.value)
+            
+        })
+        $("#totalc").val(total)
+        
+        $(add_button).click(function(){
+            var num = ($(".new_input input[class = 'credit']").length)
+            var input = '<div class ="form-row"><input type = "text" class = "name form-control col-md-6" name = "new['+num+'][class_name]" placeholder="Class"/> <input type= "number" min ="0" max = "5" step = "0.5" placeholder = " Credit Hour" class = "credit form-control col-md-5" name = "new['+num+'][credit]" ><a href="#" class = "px-2 remove_field"> Remove </a></div>'
+            $(input_field).append(input)
+            $("#hide").show()
+        })
+        $("body").on("click keyup", function(event){
+            var index = 0
+            $(".old_input.form-group").each(function(){
+                $(this).find(".credit.form-control.col-md-5").each(function(){
+                    $(this).attr('name', 'classes['+index+'][credit]')
+                    index++;
+                })
+            })
+            var index = 0
+            $(".new_input.form-group").each(function(){
+                $(this).find(".credit.form-control.col-md-5").each(function(){
+                    $(this).attr('name', 'new['+index+'][credit]')
+                    index++;
+                })
+            })
+            
+        })
+        $("body").on("click keyup", function(event){
+            var index = 0
+            $(".old_input.form-group").each(function(){
+                $(this).find(".name.form-control.col-md-6").each(function(){
+                    $(this).attr('name', 'classes['+index+'][class_name]')
+                    index++;
+                })
+            })
+            var index = 0
+            $(".new_input.form-group").each(function(){
+                $(this).find(".name.form-control.col-md-6").each(function(){
+                    $(this).attr('name', 'new['+index+'][class_name]')
+                    index++;
+                })
+            })
+            
+        })
+        
+        $("body").on("click keyup", function(event){
+            var total = 0
+            $(".changable input[type='number']").each(function(){
+                if(this.value != NaN) total += Number(this.value)
+                
+            })
+            $("#totalc").val(total)
+            
+        })
+        $("#classform").on("click", ".remove_field", function(){
+            $(this).parent('div').remove()
+            num--
+        })
+        
+        
+    })
+    
+    
+</script>
+            

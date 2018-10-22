@@ -1,0 +1,103 @@
+<script>
+    $(document).ready(function(){
+        $("#hide").hide()
+        var add_button = $(".add-button")
+        var input_field = $(".new_exam")
+        var total = 0
+        $(".weight").each(function(){
+            if(this.value != NaN) total += Number(this.value)
+            
+        })
+        $("#totalc").val(total)
+        
+        $(add_button).click(function(){
+            var num = ($(".weight").length)
+            num++
+            var index = num-1
+            var input = '<div class = "an_exam form-row border-bottom border-dark p-3"><input type = "text" class = "name form-control col-md-3" name = "all_score['+ index+'][name]" placeholder="Name"/> <input type= "number" min ="0" max = "100" step = "0.5" placeholder = "Weight(%)" class = "weight form-control col-md-2" name = "all_score['+index+'][weight]" ><span class = "new_score px-1"></span> <a href="#" class = "add_score">+</a><a href="#" class = "remove_field"> Remove </a></div>'
+            $(input_field).append(input)
+            $("#hide").show()
+        })
+        $("body").on("click keyup", function(event){
+            var total = 0
+            $(".weight").each(function(){
+                if(this.value != NaN) total += Number(this.value)
+                
+            })
+            $("#totalw").val(total)
+            
+        })
+        $("body").on("click keyup", function(event){
+            var index = 0
+            $('.an_exam').each(function(){
+                $(this).find('.weight').attr('name', 'all_score['+index+'][weight]')
+                $(this).find('.name').attr('name', 'all_score['+index+'][name]')
+                $(this).find(".new_score").each(function(){
+                    $(this).find(".score").each(function(){
+                        $(this).attr('name', 'all_score['+index+'][score]')
+                    })
+                })
+                index++
+            })
+        })
+        $("#scoreform").on("click", ".remove_field", function(){
+            $(this).parent('div').remove()
+        })
+        $("#scoreform").on("click", ".add_score", function(){
+            var num = $(this).prev().find(".score").length
+            num++
+            index = $(".input.weight").length
+            index--
+            var score = ' <label>Score '+num+' </label> <input type = "number" class = "score" style="border-radius:8px"name = "all_score['+index+'][score]" min = 0 max = 100 step = 0.1></input>'
+            $(this).prev().append(score)
+        })
+        $("body").on("click keyup", function(event){
+            var score = []
+            var totalScore = 0;
+            if($("#totalw").val() <= 100){
+                $(".weight").each(function(){
+                    score = []
+                    $(this).next().find('.score').each(function(){
+                        if(this.value != NaN){
+                            score.push(this.value)
+                        }
+                    })
+                    var tmp = 0;
+                    for(var i = 0; i < score.length; i++){
+                        tmp += Number(score[i])
+                    }
+                    tmp /= score.length
+                    if(this.value != NaN){
+                        tmp = tmp*Number(this.value)/100
+                    }
+                    totalScore += tmp
+                })
+                totalScore = totalScore*100/Number($("#totalw").val())
+                $("#totals").val(totalScore)
+                if(totalScore > 90){
+                    $("#grade").val("A")
+                }
+                else if(totalScore > 80){
+                    $("#grade").val("B")    
+                }
+                else if(totalScore > 70){
+                    $("#grade").val("C")    
+                }
+                else if(totalScore > 60){
+                    $("#grade").val("D")    
+                }
+                else if(totalScore <= 60){
+                    $("#grade").val("F")
+                }
+                else(
+                    $("#grade").val("TBD")
+                )
+            }
+            else{
+                $("#totals").val('')
+                $("#grade").val("TBD")
+            }
+        })
+    })
+</script>
+            

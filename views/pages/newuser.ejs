@@ -1,0 +1,36 @@
+ <% include ../partials/header.ejs %>
+
+    <div class = "container col-md-4 col-md-offset-4 p-5">
+            <form action= "/newuser" method = "post" id = "classform">
+                <div> 
+                    <input type= "hidden" id = 'username' name = "user_name" value = <%-currentUser.username %>>
+                </div>
+                
+                <div class= "main-input form-group">
+                    <div class = "new_input form-row">
+                        <input type= "text" class = "class form-control col-md-6" placeholder = " Class" name = "classes[0][class_name]"> 
+                        <input type= "number" class = "credit form-control col-md-3" min = "0" max = "5" step = "0.5" placeholder = " Credit Hour" name = "classes[0][credit]">
+                    </div>
+                </div>
+                
+                <div class ="form-row border-top border-black p-3">
+                    <label for = "totalc" class ="p-3">Total Credit Hours</label>
+                    <input type= "number" class="form-control col-md-4" id = "totalc" value = "0" min = "0" max = "20" step = 0.5>
+                </div>
+                
+                 <div class = "col-md-4 text-center ml-5 px-5">
+                    <input type = "submit" class ="btn btn-primary"id = "submit" value = "Create New Profile">
+                </div>
+                <div class ="container text-muted p-3"> You don't not have any class in your profile</div>
+                
+        </form>
+        <button class = "add-button btn btn-success"> Add A New Class </button>
+        
+    </div>
+<% include ../script/newuserScript.ejs %>
+
+<% include ../partials/footer.ejs %>
+
+
+    
+    

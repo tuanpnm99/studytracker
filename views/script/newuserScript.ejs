@@ -1,0 +1,59 @@
+<script>
+    $(document).ready(function(){
+        $("#hide").hide()
+        var add_button = $(".add-button")
+        var input_field = $(".main-input")
+        var total = 0
+        $(".credit").each(function(){
+            if(this.value != NaN) total += Number(this.value)
+            
+        })
+        $("#totalc").val(total)
+        
+        $(add_button).click(function(){
+            var num = ($(".new_input.credit").length)
+            console.log(num)
+            var input = '<div class ="form-row"><input type = "text" class = "class form-control col-md-6" name = "classes['+num+'][class_name]" placeholder="Class"/> <input type= "number" min ="0" max = "5" step = "0.5" placeholder = " Credit Hour" class = "credit form-control col-md-3" name = "classes['+num+'][credit]" ><a href="#" class = "px-2 remove_field"> Remove </a></div>'
+            $(input_field).append(input)
+            $("#hide").show()
+        })
+        $("body").on("click keyup", function(event){
+            var index = 0
+            $(".main-input").each(function(){
+                $(this).find(".credit").each(function(){
+                    $(this).attr('name', 'classes['+index+'][credit]')
+                    index++;
+                })
+            })
+            
+        })
+        $("body").on("click keyup", function(event){
+            var index = 0
+            $(".main-input").each(function(){
+                $(this).find(".class").each(function(){
+                    $(this).attr('name', 'classes['+index+'][class_name]')
+                    index++;
+                })
+            })
+        })
+        
+        $("body").on("click keyup", function(event){
+            var total = 0
+            $(".credit").each(function(){
+                if(this.value != NaN) total += Number(this.value)
+                
+            })
+            $("#totalc").val(total)
+            
+        })
+        $("#classform").on("click", ".remove_field", function(){
+            $(this).parent('div').remove()
+            num--
+        })
+        
+        
+    })
+    
+    
+</script>
+            

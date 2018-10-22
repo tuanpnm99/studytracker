@@ -1,0 +1,36 @@
+<% include ../partials/header.ejs %>
+    <div class ="container p-5">
+        <form action = "/editclass/<%-info._id%>?_method=PUT" method = "POST" id = "classform">
+            <input type = "hidden" name = "user_name" value ="<%- info.user_name %>">
+            <div class ="changable">
+                <div class = "old_input form-group">
+                <% var id  = [] %>
+                
+                <% for(var i = 0; i< info.classes.length; i++) {%>
+                    <div class ="form-row">
+                        <input type = "text" class = "name form-control col-md-6" name = "classes[<%- i %>][class_name]" value = "<%- info.classes[i].class_name %>">
+                        <input type = "number" name = "classes[<%- i %>][credit]" class = "credit form-control col-md-5" min = 0 max = 5 step = 0.5 value = <%- Number(info.classes[i].credit) %>>
+                        <span class ="px-2"><a href="#" class = "remove_field"> Remove </a></span>
+                        <input type = "hidden" name = "classes[<%- i %>][scoreID]" class = "id" value = "<%- info.classes[i].scoreID %>" style = "">
+                        
+                    </div>
+                <% }%>
+                </div>
+                <div class = "new_input form-group"></div>
+                    
+            </div>
+            <div class ="form-inline border-top border-dark p-3">
+                <label for = "totalc" class ="px-3">Total Credit Hours</label>
+                <input type= "number" class ="form-control col-md-4" id = "totalc" value = "0" min = "0" max = "20" step = 0.5>
+            </div>
+                
+            <div>
+                <input class = "btn btn-primary"type = "submit" id = "submit" value = "Submit">
+            </div>
+        </form>
+            <button class = "add-button btn btn-success"> Add Class </button>
+        <div class ="container text-center p-2"><a href="/">Back To Index Page</a></div>
+    </div>
+    <% include ../script/classscript.ejs %>
+<% include ../partials/footer.ejs %>
+

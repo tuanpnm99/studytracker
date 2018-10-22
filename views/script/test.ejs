@@ -1,0 +1,34 @@
+<script>
+    $(document).ready(function(){
+        $("#hide").hide()
+        var add_button = $(".add-button")
+        var num = 1;
+        var input_field = $(".new_input")
+        $(add_button).click(function(){
+            num++
+            name = "Quiz "+ String(num)
+            console.log(name)
+            
+            var input = '<div><input type = "number" min = "0" max = "100" id = "score' + String(num)+'" name = "score" placeholder=" '+name+'"/><input type= "number" min ="0" max = "100" id = "weight' + String(num)+'" class = "weight" placeholder = " Weight of Quiz '+String(num)+'" name = "weight" ><a href="#" class = "remove_field"> Remove </a></div>'
+            console.log(input)
+            $(input_field).append(input)
+            $("#hide").show()
+        })
+        $("#firstform").on("keyup", function(event){
+            var total = 0
+            for(var i = 1; i <= num; i++){
+                var w = "#weight"
+                w+= i
+                total += Number($(w).val())
+            }
+            $("#totalw").val(total)
+        })
+        $("#firstform").on("click", ".remove_field", function(){
+            $(this).parent('div').remove()
+            num--
+        })
+    })
+    
+    
+</script>
+            
