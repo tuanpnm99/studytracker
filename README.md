@@ -1,4 +1,4 @@
-# Study Tracker ([Try it here](https://cplusplus-pnmtuan1999.c9users.io/))
+# Study Tracker
 StudyTracker is a web application that allows student to keep track of their scores in class and generate the recommended study plan for a week based on their performance in each class and its given credit hours.
 ## How To Use
 ### 1. Register for an account
